@@ -9,6 +9,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -17,16 +18,23 @@ public class TestService {
     @Autowired
     UserRepository userRepository;
 
-   public void matcher(){
+    public void matcher() {
         User user = new User();
-        user.setName("nick");
-        List<User> users =  findPeople(user);
-        log.info("users={}",users.toString());
+        user.setName("nic");
+        user.setEmail("www");
+        List<User> users = findPeople(user);
+        log.info("users={}", users.toString());
+
+
+       Optional<User>  u1 = userRepository.findOne(Example.of(user));
+        List<User> users1 = userRepository.findAll(Example.of(user));
     }
 
 
-
     List<User> findPeople(User probe) {
-        return userRepository.findAll(Example.of(probe));
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.ignoreCase())
+                .withMatcher("email", ExampleMatcher.GenericPropertyMatchers.contains());
+        return userRepository.findAll(Example.of(probe, matcher));
     }
 }

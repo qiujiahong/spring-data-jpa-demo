@@ -45,3 +45,43 @@ public interface UserRepository extends JpaRepository<User, Long> {
 }
 
 ```
+
+
+## 使用样例查询
+
+* 简单使用
+
+```java
+  Optional<User>  u1 = userRepository.findOne(Example.of(user));
+  List<User> users1 = userRepository.findAll(Example.of(user));
+```
+
+
+* 自定义条件
+
+```java
+
+@Slf4j
+@Service
+public class TestService {
+
+    @Autowired
+    UserRepository userRepository;
+
+   public void matcher(){
+        User user = new User();
+        user.setName("nic");
+       user.setEmail("www");
+        List<User> users =  findPeople(user);
+        log.info("users={}",users.toString());
+    }
+
+    List<User> findPeople(User probe) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.ignoreCase())
+                .withMatcher("email",ExampleMatcher.GenericPropertyMatchers.contains());
+        return userRepository.findAll(Example.of(probe,matcher));
+    }
+}
+
+```
