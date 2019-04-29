@@ -7,3 +7,4 @@
 * [核心概念](docs/core_concepts.md)
 * [查询条件](docs/query_creation.md)
 * [排序](docs/query_sort.md)
+* [名字参数](docs/name_param.md)

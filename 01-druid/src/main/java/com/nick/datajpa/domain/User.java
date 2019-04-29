@@ -16,4 +16,14 @@ public class User {
     private String name;
     @Column(length = 30)
     private String email;
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
