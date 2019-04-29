@@ -3,6 +3,13 @@
 排序可以使用PageRequest或者是Sort实现。
 
 
+* PageRequest
+```java
+Page<User> users = userRepository.findAll(PageRequest.of(1, 20, Sort.by("name")));
+```
+
+* Sort 
+
 ```java
 public interface UserRepository extends JpaRepository<User, Long> {
 
