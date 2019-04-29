@@ -3,3 +3,4 @@
 
 
 * [链接mysql](docs/connect.md)
+* [使用druid链接池](docs/druid.md)

@@ -1,15 +1,3 @@
-# 链接mysql
-
-## 前言
-
-本文介绍如何在spring boot项目中链接mysql数据库,并完成对应的dao层代码；
-
-
-## 代码
-
-* pom.xml
-
-```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -21,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nick</groupId>
-	<artifactId>00-datajpa</artifactId>
+	<artifactId>01-druid</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>00-datajpa</name>
+	<name>01-druid</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -55,6 +43,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- 添加druid依赖 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -67,45 +61,3 @@
 	</build>
 
 </project>
-
-```
-
-
-* 实体类User.java
-
-```java
-@Data
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
-
-    @Column(length = 20)
-    private String name;
-    @Column(length = 30)
-    private String email;
-}
-
-```
-
-* dao层 UserRepository.java
-
-```java
-public interface UserRepository  extends CrudRepository<User,Integer> {
-}
-```
-
-* 配置文件application.properties 
-
-```
-spring.jpa.hibernate.ddl-auto=create
-spring.datasource.url=jdbc:mysql://localhost:3306/db1
-spring.datasource.username=root
-spring.datasource.password=123456
-# 设置默认使用my
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
-```
-
-
-## [完整代码](https://github.com/qiujiahong/spring-data-jpa-demo/tree/master/00-datajpa)
