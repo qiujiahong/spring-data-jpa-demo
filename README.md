@@ -8,3 +8,4 @@
 * [查询条件](docs/query_creation.md)
 * [排序](docs/query_sort.md)
 * [名字参数](docs/name_param.md)
+* [自定义返回类型](docs/return_type.md)
