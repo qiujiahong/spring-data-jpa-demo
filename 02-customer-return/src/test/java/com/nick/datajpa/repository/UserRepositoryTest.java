@@ -23,8 +23,9 @@ public class UserRepositoryTest {
 
     @Test
     public void test(){
-       log.info("users:{}",userRepository.findAll());
-        Page<User> users = userRepository.findAll(PageRequest.of(1, 20, Sort.by("name")));
+       //log.info("users:{}",userRepository.findAll());
+       // Page<User> users = userRepository.findAll(PageRequest.of(1, 20, Sort.by("name")));
+       log.info("user1:{}",userRepository.queryUser1s("nick"));
 
     }
 }
